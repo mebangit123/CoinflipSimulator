@@ -1,21 +1,25 @@
 #!/bin/bash -x
 echo "Flip Coin Simulator"
-
 heads=0
 tails=0
 
-while (( $heads < 10 && $tails < 10 ))
+while (( $heads < 21 && $tails < 21 ))
 do
+	FLIP=$(($RANDOM%2))
 
-FLIP=$(($RANDOM%2))
-
-if [ $FLIP == 1 ]
-then
-    heads=$(($heads+1))
-else
-    tails=$(($tails+1))
-fi
+	if [ $FLIP == 1 ]
+	then
+   	 heads=$(($heads+1))
+	else
+    	tails=$(($tails+1))
+	fi
 done
 
-echo "Heads win $heads times."
-echo "Tails win $tails times."
+if (( tails > heads ))
+then
+	tWon=$(($tails-$heads))
+	echo "Tails Won by $tWon"
+else
+	hWon=$(($heads-$tails))
+	echo "Heads Won by $hWon"
+fi
